@@ -1,6 +1,20 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import App from './App'
-import './index.css'
+import './style/global.less';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import { message } from 'antd';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+
+import App from './view/App';
+
+message.config({
+  maxCount: 1
+});
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <BrowserRouter basename={import.meta.env.VITE_BASE_URL}>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>
+);
