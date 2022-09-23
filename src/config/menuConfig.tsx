@@ -12,7 +12,7 @@ const menuConfig: ConfigType[] = [
   },
   {
     type: 'sub',
-    title: '元数据',
+    title: '数据管理',
     route: '/meta-data',
     icon: <ApiOutlined />,
     children: [
