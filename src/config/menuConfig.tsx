@@ -29,6 +29,20 @@ const menuConfig: ConfigType[] = [
         route: '/meta-data/dict',
         icon: <ApiOutlined />,
         element: lazy(() => import('@/view/metaData/dataDict/DataDict'))
+      },
+      {
+        type: 'item',
+        title: '链接关系',
+        route: '/metaData/dictConnect',
+        icon: <ApiOutlined />,
+        element: lazy(() => import('@/view/metaData/dictConnect/DictConnect'))
+      },
+      {
+        type: 'item',
+        title: '字典详情',
+        route: '/metaData/dictDetail',
+        icon: <ApiOutlined />,
+        element: lazy(() => import('@/view/metaData/dictDetail/DictDetail'))
       }
     ]
   },
