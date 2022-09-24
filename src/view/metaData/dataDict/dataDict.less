@@ -1,0 +1,59 @@
+.dict-header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.dict-container {
+  display: flex;
+  flex-wrap: wrap;
+  .dict-item-container {
+    width: 25%;
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .dict-item {
+      width: 80%;
+      height: 80%;
+      border: 1px solid #fff;
+      border-radius: 8px;
+      box-shadow: 0px 0px 5px 0px #999;
+      padding: 15px 18px;
+      .dict-item-title {
+        display: flex;
+        justify-content: flex-end;
+        .dict-item-title__right {
+          font-size: 16px;
+          width: 66px;
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+      .dict-item-content {
+        padding: 5px 8px;
+        .dict-item-content__top {
+          display: flex;
+          flex-wrap: nowrap;
+          align-items: flex-start;
+        }
+        .dict-item-content__bottom {
+          margin: 8px 0 0 0;
+          display: flex;
+          flex-wrap: nowrap;
+          align-items: flex-start;
+        }
+        .intro-item {
+          flex-grow: 0;
+          flex-shrink: 0;
+          margin: 0 7px 0 0;
+          font: 16px "PingFangSC-Regular", "microsoft yahei";
+          color: #666;
+        }
+      }
+    }
+    .dict-item:hover {
+      cursor: pointer;
+      box-shadow: 0px 0px 6px 0px #1b5fc5;
+    }
+  }
+}

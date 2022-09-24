@@ -108,14 +108,14 @@ export function cusRequest<D>(
   });
 }
 
-export function mGet<D>(url: string, params: object = {}): Promise<D> {
+export function cusGet<D>(url: string, params: object = {}): Promise<D> {
   return cusRequest<D>('get', url, params);
 }
 
-export function mPost<D>(url: string, data: object = {}): Promise<D> {
+export function cusPost<D>(url: string, data: object = {}): Promise<D> {
   return cusRequest<D>('post', url, data);
 }
 
-export function mDelete<D>(url: string, data: object = {}): Promise<D> {
+export function cusDelete<D>(url: string, data: object = {}): Promise<D> {
   return cusRequest<D>('delete', url, data);
 }

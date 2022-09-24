@@ -16,7 +16,7 @@ const BaseLayout: React.FC = () => {
         <CusHeader
           icon={import.meta.env.VITE_APP_ICON}
           title={import.meta.env.VITE_APP_TITLE}
-          user={'宣凯洲/291465'}
+          user={'xxx/yyy'}
         />
         <Layout className={'main'}>
           <Content className={'content'}>
