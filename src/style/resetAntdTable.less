@@ -1,0 +1,34 @@
+.ant-table-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.ant-table {
+  background-color: #fff;
+  color: #333;
+}
+
+// 表头样式
+.ant-table-thead > tr > th {
+  background-color: #f8f8f8;
+}
+
+// 选中行样式
+.ant-table-tbody {
+  > tr:hover:not(.ant-table-expanded-row) > td,
+  .ant-table-row-hover,
+  .ant-table-row-hover > td {
+    background-color: #f5f7fa;
+  }
+}
+
+.ant-table-thead > tr > th {
+  border-bottom: none;  // th行 底部的border
+}
+
+.ant-table-thead > tr > th,
+.ant-table-tbody > tr > td {
+  padding: 8px 12px;
+}
+

@@ -4,6 +4,7 @@ import type { ColumnsType } from 'antd/es/table';
 
 import { MemberItem, DictMemberReq, DeleteDictMemberReq } from '@/api/modules/metaData/constant';
 import { editDictMember, deleteDictMember } from '@/api/modules/metaData/dataDict';
+import '@/style/resetAntdTable.less';
 
 import { DictItemType } from './constant';
 
