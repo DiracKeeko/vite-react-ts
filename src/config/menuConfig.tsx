@@ -13,20 +13,20 @@ const menuConfig: ConfigType[] = [
   {
     type: 'sub',
     title: '数据管理',
-    route: '/meta-data',
+    route: '/metaData',
     icon: <ApiOutlined />,
     children: [
       {
         type: 'item',
         title: '数据资产',
-        route: '/meta-data/assets',
+        route: '/metaData/assets',
         icon: <ApiOutlined />,
         element: lazy(() => import('@/view/home/Home'))
       },
       {
         type: 'item',
         title: '数据字典',
-        route: '/meta-data/dict',
+        route: '/metaData/dict',
         icon: <ApiOutlined />,
         element: lazy(() => import('@/view/metaData/dataDict/DataDict'))
       },
@@ -58,6 +58,13 @@ const menuConfig: ConfigType[] = [
         route: '/case/case1',
         icon: <ApiOutlined />,
         element: lazy(() => import('@/view/case/case1/Case1'))
+      },
+      {
+        type: 'item',
+        title: '类型问题',
+        route: '/case/case2',
+        icon: <ApiOutlined />,
+        element: lazy(() => import('@/view/case/case2/Case2'))
       }
     ]
   }
