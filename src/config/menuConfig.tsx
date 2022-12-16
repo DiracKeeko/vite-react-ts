@@ -61,7 +61,7 @@ const menuConfig: ConfigType[] = [
       },
       {
         type: 'item',
-        title: '类型问题',
+        title: 'js-financial-tools使用',
         route: '/case/case2',
         icon: <ApiOutlined />,
         element: lazy(() => import('@/view/case/case2/Case2'))
@@ -72,6 +72,13 @@ const menuConfig: ConfigType[] = [
         route: '/case/case3',
         icon: <ApiOutlined />,
         element: lazy(() => import('@/view/case/case3/Case3'))
+      },
+      {
+        type: 'item',
+        title: 'Tree的报错举例',
+        route: '/case/case4',
+        icon: <ApiOutlined />,
+        element: lazy(() => import('@/view/case/case4/Case4'))
       }
     ]
   }
