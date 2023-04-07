@@ -1,4 +1,4 @@
-import { useDynamicSvgImport } from "@/hook/useDynamicSvgImport";
+import { useDynamicSvgImport } from '@/hook/useDynamicSvgImport';
 
 interface IProps {
   iconName: string;
@@ -12,14 +12,8 @@ function SvgIcon(props: IProps) {
 
   return (
     <>
-      {loading && (
-        <div className="h-8 w-8"></div>
-      )}
-      {SvgIcon && (
-        <div className={wrapperStyle}>
-          <SvgIcon {...svgProp} />
-        </div>
-      )}
+      {loading && <div className="h-8 w-8"></div>}
+      {SvgIcon && <SvgIcon {...svgProp} />}
     </>
   );
 }
