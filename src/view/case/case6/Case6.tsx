@@ -1,11 +1,16 @@
 import React from 'react';
-// import IconAccNav from '@/icon/icon-acc-nav.svg';
+import SvgIcon from '@/component/SvgIcon';
+import './case6.less';
 
 const Case6 = () => {
   return (
     <>
       hello, svg!
-      {/* <IconAccNav /> */}
+      <SvgIcon
+        iconName="icon_accNav"
+        svgProp={{ width: 100, height: 100, fill: '#61dafb' }}
+        wrapperStyle={'icon-class'}
+      />
     </>
   );
 };
