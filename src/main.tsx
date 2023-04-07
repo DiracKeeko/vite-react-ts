@@ -1,4 +1,5 @@
 import './style/global.less';
+import './main.d.ts';
 
 import { message } from 'antd';
 import React from 'react';

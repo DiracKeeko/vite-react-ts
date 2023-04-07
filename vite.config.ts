@@ -2,6 +2,7 @@ import react from '@vitejs/plugin-react';
 import * as path from 'path';
 import { ConfigEnv, defineConfig, loadEnv } from 'vite';
 import { createHtmlPlugin } from 'vite-plugin-html';
+import svgSprites from 'rollup-plugin-svg-sprites'
 
 export default defineConfig(({ mode }: ConfigEnv) => {
   return {
@@ -44,6 +45,10 @@ export default defineConfig(({ mode }: ConfigEnv) => {
     },
     plugins: [
       react(),
+      svgSprites({
+        jsx: true,
+        include: ['./src/icon']
+      }),
       createHtmlPlugin({
         inject: {
           data: {

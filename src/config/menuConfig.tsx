@@ -86,6 +86,13 @@ const menuConfig: ConfigType[] = [
         route: '/case/case5',
         icon: <ApiOutlined />,
         element: lazy(() => import('@/view/case/case5/Case5'))
+      },
+      {
+        type: 'item',
+        title: '优雅使用svg',
+        route: '/case/case6',
+        icon: <ApiOutlined />,
+        element: lazy(() => import('@/view/case/case6/Case6'))
       }
     ]
   }
