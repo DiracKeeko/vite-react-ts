@@ -1,5 +1,4 @@
 import SvgIcon from '@/component/SvgIcon';
-import './case6.less';
 
 import { ReactComponent as IconAccNav } from '@/icon/icon_accNav.svg';
 
@@ -15,7 +14,6 @@ const Case6 = () => {
       <SvgIcon
         iconName="icon_accNav"
         svgProp={{ width: 50, height: 50, fill: '#61dafb' }}
-        wrapperStyle={'icon-class'}
       />
       {/* ↓ 这是原始的 vite-plugin-svgr 的使用方式 */}
       <IconAccNav/>
