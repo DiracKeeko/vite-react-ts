@@ -1,0 +1,42 @@
+.button-switch {
+  .button-switch-group {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    .button-switch-group-background {
+      overflow: hidden;
+      vertical-align: middle;
+      background-color: var(--white-color);
+      
+      .button-switch-item {
+        box-sizing: border-box;
+        display: inline-block;
+        padding: 0.25rem 1rem;
+        font-size: 0.88rem;
+        color: var(--primary-color);
+        text-align: center;
+        cursor: pointer;
+        border: 1px solid var(--primary-color);
+        &:hover {
+          background-color: #ecf5ff;
+        }
+      }
+
+      .button-switch-item:first-of-type {
+        border-radius: 4px 0 0 4px;
+      }
+      .button-switch-item:last-of-type {
+        border-radius: 0 4px 4px 0;
+      }
+      .button-switch-item:not(:last-child) {
+        margin-right: -1px;
+      }
+
+      .active-button-switch-item {
+        color: var(--white-color);
+        background-color: var(--primary-color) !important;
+      }
+    }
+  }
+}
