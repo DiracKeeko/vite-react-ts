@@ -93,6 +93,13 @@ const menuConfig: ConfigType[] = [
         route: '/case/case6',
         icon: <ApiOutlined />,
         element: lazy(() => import('@/view/case/case6/Case6'))
+      },
+      {
+        type: 'item',
+        title: 'switch组件',
+        route: '/case/case7',
+        icon: <ApiOutlined />,
+        element: lazy(() => import('@/view/case/case7/Case7'))
       }
     ]
   }

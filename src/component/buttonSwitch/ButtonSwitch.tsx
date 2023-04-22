@@ -1,45 +1,53 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { throttle } from 'lodash';
 
 import './buttonSwitch.less';
 
-interface Props {
-  tabKeyList: string[];
-  tabLabelList: string[];
+type TabItem = {
+  key: string;
+  label: string;
+};
+
+type Props = {
+  tabItemList: TabItem[];
   curSelectKey: string;
-  onTabChange: (key: string) => void;
+  onTabChange: (tabItem: TabItem, index: number) => void;
 }
 
 const ButtonSwitch: React.FC<Props> = ({
-  tabKeyList = [],
-  tabLabelList = [],
+  tabItemList = [],
   curSelectKey = '',
   onTabChange
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
+  useEffect(() => {
+    const index = tabItemList.findIndex((item) => item.key === curSelectKey);
+    setActiveIndex(index);
+  }, [curSelectKey, tabItemList]);
+
   const handleTabChange = useMemo(
     () =>
       throttle((index: number) => {
         setActiveIndex(index);
-        onTabChange(tabKeyList[index]);
+        onTabChange(tabItemList[index], index);
       }, 500),
-    [tabKeyList, onTabChange]
+    [tabItemList, onTabChange]
   );
 
   return (
     <div className="button-switch">
       <div className="button-switch-group">
         <div className="button-switch-group-background">
-          {tabKeyList.map((key, index) => (
+          {tabItemList.map((item, index) => (
             <span
-              key={key}
+              key={item.key}
               className={`button-switch-item${
                 activeIndex === index ? ' active-button-switch-item' : ''
               }`}
               onClick={() => handleTabChange(index)}
             >
-              {tabLabelList[index]}
+              {item.label}
             </span>
           ))}
         </div>
