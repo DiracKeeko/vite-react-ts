@@ -1,0 +1,34 @@
+.border-switch {
+  .border-switch-group {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    .border-switch-group-background {
+      overflow: hidden;
+      vertical-align: middle;
+      border: 1px solid #EEEEEE;
+      border-radius: 5px;
+      
+      .border-switch-item {
+        display: inline-block;
+        padding: 0 0.75rem;
+        font-size: 0.75rem;
+        line-height: 1.5rem;
+        color: #999999;
+        text-align: center;
+        cursor: pointer;
+        border-right: 1px solid #EEEEEE;
+      }
+
+      .border-switch-item:last-child {
+        border: none;
+      }
+
+      .active-border-switch-item {
+        font-weight: bold;
+        color: #1b5fc5;
+      }
+    }
+  }
+}
