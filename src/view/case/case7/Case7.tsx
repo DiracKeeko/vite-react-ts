@@ -1,13 +1,32 @@
+import React, { useState } from 'react';
 import { Row, Col } from 'antd';
 
 import ButtonSwitch from '@/component/buttonSwitch/ButtonSwitch';
 import BorderSwitch from '@/component/borderSwitch/BorderSwitch';
+import QuarterSelect from '@/component/quarterSelect/QuarterSelect';
 
+// Switch
+const tabItemList = [
+  { key: 'incomeRate', label: '收益走势' },
+  { key: 'nav', label: '净值走势' }
+];
+
+// QuarterSelect
+const quarterArr = [
+  '2022Q3',
+  '2022Q2',
+  '2022Q1',
+  '2021Q4',
+  '2021Q3',
+  '2021Q2',
+  '2021Q1',
+  '2020Q4',
+  '2020Q3',
+  '2020Q2',
+  '2020Q1'
+];
 const Case7 = () => {
-  const tabItemList = [
-    { key: 'incomeRate', label: '收益走势' },
-    { key: 'nav', label: '净值走势' }
-  ];
+  const [quarterIndex, setQuarterIndex] = useState<number>(0);
   return (
     <>
       <Row>
@@ -22,7 +41,7 @@ const Case7 = () => {
           ></ButtonSwitch>
         </Col>
       </Row>
-      <Row style={{"margin": "10px 0"}}>
+      <Row style={{ margin: '10px 0' }}>
         <Col span={16}>
           <BorderSwitch
             tabItemList={tabItemList}
@@ -34,6 +53,17 @@ const Case7 = () => {
           ></BorderSwitch>
         </Col>
       </Row>
+
+      <div style={{ padding: '0 0 0 60%' }}>
+        <QuarterSelect
+          quarterIndex={quarterIndex}
+          quarterArr={quarterArr}
+          onChange={(index) => {
+            console.log('index->', index);
+            setQuarterIndex(index);
+          }}
+        ></QuarterSelect>
+      </div>
     </>
   );
 };
