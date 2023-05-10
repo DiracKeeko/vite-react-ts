@@ -1,0 +1,101 @@
+.quarter-select {
+  display: inline-block;
+  position: relative;
+  .quarter-select-menu {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 8.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    .quarter-select-left-btn,
+    .quarter-select-right-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.875rem;
+      height: 1.5rem;
+      &:hover {
+        color: #1b5fc5;
+        cursor: pointer;
+      }
+    }
+    .quarter-select-center-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 5rem;
+      height: 1.5rem;
+      border-right: 1px solid #ccc;
+      border-left: 1px solid #ccc;
+      &:hover {
+        color: #1b5fc5;
+        cursor: pointer;
+      }
+    }
+  }
+  .quarter-select-expand-container {
+    position: absolute;
+    top: 35px;
+    right: 0px;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    width: 250px;
+    .quarter-select-year {
+      width: 120px;
+      height: 240px;
+      overflow: auto;
+      background-color: #fff;
+      border-radius: 4px;
+      box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.1);
+      label {
+        &:hover {
+          cursor: pointer;
+          background-color: #f8f8f8;
+        }
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        height: 40px;
+        input {
+          z-index: -1;
+          display: none;
+        }
+      }
+    }
+    .quarter-select-quarter {
+      width: 120px;
+      height: 160px;
+      overflow: auto;
+      background-color: #fff;
+      border-radius: 4px;
+      box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.1);
+      /* stylelint-disable-next-line no-descending-specificity*/
+      label {
+        &:hover {
+          cursor: pointer;
+          background-color: #f8f8f8;
+        }
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 40px;
+        padding: 0 10px;
+        input {
+          display: none;
+        }
+      }
+    }
+  }
+  .container-hide {
+    display: none;
+  }
+  .active-selected-class {
+    color: #1b5fc5;
+    background-color: #f5f6fb;
+  }
+  .disabled {
+    color: #ccc !important;
+    cursor: auto !important;
+  }
+}
