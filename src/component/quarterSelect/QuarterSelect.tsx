@@ -113,7 +113,6 @@ const QuarterSelect = ({ quarterIndex = 1, quarterArr = [], onChange }: Props) =
   const handleClickOutside = (event) => {
     if (quarterSelectRef.current && !quarterSelectRef.current.contains(event.target)) {
       setIsContainerShow(false);
-      setView();
     }
   };
 
