@@ -1,4 +1,4 @@
-import { ApiOutlined, DashboardOutlined, FallOutlined } from '@ant-design/icons';
+import { ApiOutlined, DashboardOutlined, ProjectOutlined, FallOutlined } from '@ant-design/icons';
 import { MenuDividerProps, MenuItemGroupProps, MenuItemProps, SubMenuProps } from 'antd/lib/menu';
 import React, { lazy } from 'react';
 
@@ -109,6 +109,13 @@ const menuConfig: ConfigType[] = [
         element: lazy(() => import('@/view/case/case8/Case8'))
       }
     ]
+  },
+  {
+    type: 'item',
+    title: '视觉展示',
+    route: '/visualPresentation',
+    icon: <ProjectOutlined />,
+    element: lazy(() => import('@/view/visualPresentation/VisualPresentation'))
   }
 ];
 
