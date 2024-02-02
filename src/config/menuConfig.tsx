@@ -1,6 +1,6 @@
-import { ApiOutlined, DashboardOutlined, ProjectOutlined, FallOutlined } from '@ant-design/icons';
-import { MenuDividerProps, MenuItemGroupProps, MenuItemProps, SubMenuProps } from 'antd/lib/menu';
 import React, { lazy } from 'react';
+import { ApiOutlined, CloudUploadOutlined, DashboardOutlined, ProjectOutlined } from '@ant-design/icons';
+import { MenuDividerProps, MenuItemGroupProps, MenuItemProps, SubMenuProps } from 'antd/lib/menu';
 
 const menuConfig: ConfigType[] = [
   {
@@ -116,7 +116,14 @@ const menuConfig: ConfigType[] = [
     route: '/visualPresentation',
     icon: <ProjectOutlined />,
     element: lazy(() => import('@/view/visualPresentation/VisualPresentation'))
-  }
+  },
+  {
+    type: 'item',
+    title: '激活菜单展示',
+    route: '/operation',
+    icon: <CloudUploadOutlined />,
+    element: lazy(() => import('@/view/operation/Operation'))
+  },
 ];
 
 interface ItemProps extends Omit<MenuItemProps, 'children'> {
