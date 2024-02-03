@@ -2,13 +2,13 @@ import React from 'react';
 import { createSearchParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { Tabs } from 'antd';
 
-import TabChange from './TabOperationChange';
+import TabOperationChange from './TabOperationChange';
 import TabProduction from './TabProduction';
 
 const tabItems: {
-  label: string;
+  label: string; 
   key: string;
-  children: JSX.Element;
+  children: JSX.Element | string;
 }[] = [
   {
     label: '生产',
@@ -16,9 +16,14 @@ const tabItems: {
     children: <TabProduction />
   },
   {
-    label: '变更',
+    label: '运维变更',
     key: 'operationChange',
-    children: <TabChange />
+    children: <TabOperationChange />
+  },
+  {
+    label: '当日UAT制品',
+    key: 'uatLabel',
+    children: "UAT label table"
   }
 ];
 
