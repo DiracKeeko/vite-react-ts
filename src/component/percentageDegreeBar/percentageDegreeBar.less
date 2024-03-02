@@ -1,0 +1,41 @@
+.slider-range-chart {
+  position: relative;
+  box-sizing: content-box;
+  display: inline-block;
+  width: 72px;
+  height: 8px;
+  background-color: #e8ebf0;
+  border-right: 4px solid #e8ebf0;
+  border-left: 4px solid #e8ebf0;
+  border-radius: 4px;
+  .range-bar {
+    position: absolute;
+    top: 0;
+    height: 8px;
+    border-radius: 4px;
+    transform: translateX(-4px);
+  }
+}
+.range {
+  &.range--low {
+    .range-bar {
+      background-color: var(--primary-color);
+      border-right: 4px solid var(--primary-color);
+      border-left: 4px solid var(--primary-color);
+    }
+  }
+  &.range--mid {
+    .range-bar {
+      background-color: var(--warning-color);
+      border-right: 4px solid var(--warning-color);
+      border-left: 4px solid var(--warning-color);
+    }
+  }
+  &.range--high {
+    .range-bar {
+      background-color: var(--danger-color);
+      border-right: 4px solid var(--danger-color);
+      border-left: 4px solid var(--danger-color);
+    }
+  }
+}
