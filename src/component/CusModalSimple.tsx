@@ -3,7 +3,6 @@ import React, {
   ForwardRefRenderFunction,
   useCallback,
   useImperativeHandle,
-  useRef,
   useState
 } from 'react';
 import { Modal as AntdModal, Spin } from 'antd';
@@ -16,40 +15,32 @@ export interface ModalRef {
   showModal(options?: Options): Promise<void>;
   closeModal(): void;
 }
+
 export interface ModalProps extends Omit<AntdModalProps, 'onOk' | 'onCancel'> {
-  onOk?: OnOkType;
+  onOk?: (event: React.MouseEvent<HTMLElement>) => void | Promise<void>;
   onCancel?(): void | Promise<void>;
 }
-export type OnOkType = (
-  event: React.MouseEvent<HTMLElement> & { stopClose: () => void }
-) => void | Promise<void>;
 
 const CusModal: ForwardRefRenderFunction<ModalRef, ModalProps> = (props, ref) => {
   const { children, onOk, onCancel, ...reset } = props;
   const [spinning, setSpinning] = useState<boolean>(false);
   const [visible, setVisible] = useState<boolean>(false);
   const [confirmLoading, setConfirmLoading] = useState<boolean>(false);
-  const isStop = useRef<boolean>(false);
-  const stopClose = useCallback(() => {
-    isStop.current = true;
-  }, []);
-  const handleOnOK = useCallback(
+
+  const wrapOnOk = useCallback(
     async (event: React.MouseEvent<HTMLElement>) => {
       setConfirmLoading(true);
-      onOk && (await onOk({ ...event, stopClose }));
+      onOk && (await onOk({ ...event }));
       setConfirmLoading(false);
-      if (isStop.current) {
-        isStop.current = false;
-      } else {
-        setVisible(false);
-      }
+      setVisible(false);
     },
-    [onOk, stopClose]
+    [onOk]
   );
-  const handleOnCancel = useCallback(() => {
+  const wrapOnCancel = useCallback(() => {
     onCancel && onCancel();
     setVisible(false);
   }, [onCancel]);
+
   useImperativeHandle(ref, () => ({
     async showModal(options = {}) {
       const { afterShowModal } = options;
@@ -69,8 +60,8 @@ const CusModal: ForwardRefRenderFunction<ModalRef, ModalProps> = (props, ref) =>
       {...reset}
       visible={visible}
       confirmLoading={confirmLoading}
-      onOk={handleOnOK}
-      onCancel={handleOnCancel}
+      onOk={wrapOnOk}
+      onCancel={wrapOnCancel}
     >
       <Spin spinning={spinning}>{children}</Spin>
     </AntdModal>

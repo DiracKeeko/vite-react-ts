@@ -12,13 +12,13 @@ const TabProduction = () => {
     setContent(val);
     modalRef.current?.showModal();
   }, []);
-  const handleOnOk = () => {
-    console.log('ok');
-  };
-  // 取消
-  const handleOnCancel = () => {
-    console.log('cancel');
-  };
+  // const handleOnOk = () => {
+  //   console.log('ok');
+  // };
+  // // 取消
+  // const handleOnCancel = () => {
+  //   console.log('cancel');
+  // };
 
   return (
     <div>
@@ -27,8 +27,8 @@ const TabProduction = () => {
         destroyOnClose
         title="弹窗标题"
         ref={modalRef}
-        onOk={handleOnOk}
-        onCancel={handleOnCancel}
+        // onOk={handleOnOk}
+        // onCancel={handleOnCancel}
         okButtonProps={{
           style: {
             display: content ? '' : 'none'
