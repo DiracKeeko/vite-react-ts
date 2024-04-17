@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo,useState } from 'react';
 import { throttle } from 'lodash';
 
 import './borderSwitch.less';
+
 
 type TabItem = {
   key: string;
