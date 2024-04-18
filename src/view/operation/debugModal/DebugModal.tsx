@@ -5,8 +5,11 @@ import React, {
   useImperativeHandle,
   useState
 } from 'react';
-import { Modal as AntdModal, Spin, Steps } from 'antd';
+import { Button, Modal as AntdModal, Spin, Steps } from 'antd';
 import { ModalProps as AntdModalProps } from 'antd';
+
+import Step1 from "./Step1";
+import Step2 from "./Step2";
 
 interface Options {
   afterShowModal?(): void | Promise<void>;
@@ -21,7 +24,30 @@ export interface ModalProps extends Omit<AntdModalProps, 'onOk' | 'onCancel'> {
   onCancel?(): void | Promise<void>;
 }
 
-const CusModal: ForwardRefRenderFunction<ModalRef, ModalProps> = (props, ref) => {
+const stepArr = [
+  {
+    title: '1',
+    component: <Step1 />
+  },
+  {
+    title: '2',
+    component: <Step2 />
+  },
+  {
+    title: '3',
+    component: "hei Step3"
+  },
+  {
+    title: '4',
+    component: "hello Step4"
+  },
+  {
+    title: '5',
+    component: "yeah Step5"
+  }
+];
+
+const DebugModal: ForwardRefRenderFunction<ModalRef, ModalProps> = (props, ref) => {
   const { onOk, onCancel, ...reset } = props;
   const [spinning, setSpinning] = useState<boolean>(false);
   const [visible, setVisible] = useState<boolean>(false);
@@ -72,45 +98,19 @@ const CusModal: ForwardRefRenderFunction<ModalRef, ModalProps> = (props, ref) =>
       onCancel={wrapOnCancel}
     >
       <Spin spinning={spinning}>
-        <Steps
-          size="small"
-          current={currentStep}
-          items={[
-            {
-              title: '1'
-            },
-            {
-              title: '2'
-            },
-            {
-              title: '3'
-            }
-          ]}
-        />
-        {currentStep === 0 && (
+        <Steps size="small" current={currentStep} items={stepArr.map((item) => ({ title: item.title }))} />
+        <div>
+          {stepArr[currentStep].component}
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <div>{currentStep !== 0 && <Button onClick={handlePrev}>上一步</Button>}</div>
           <div>
-            <p>Content of step 1</p>
-            <button onClick={handleNext}>Next</button>
+            {currentStep !== stepArr.length - 1 && <Button onClick={handleNext}>下一步</Button>}
           </div>
-        )}
-
-        {currentStep === 1 && (
-          <div>
-            <p>Content of step 2</p>
-            <button onClick={handlePrev}>Previous</button>
-            <button onClick={handleNext}>Next</button>
-          </div>
-        )}
-
-        {currentStep === 2 && (
-          <div>
-            <p>Content of step 3</p>
-            <button onClick={handlePrev}>Previous</button>
-          </div>
-        )}
+        </div>
       </Spin>
     </AntdModal>
   );
 };
 
-export default forwardRef(CusModal);
+export default forwardRef(DebugModal);
