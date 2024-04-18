@@ -9,6 +9,9 @@ import React, {
 import { Modal as AntdModal, Spin } from 'antd';
 import { ModalProps as AntdModalProps } from 'antd';
 
+// React之Antd-Modal-Ts二次封装
+// https://juejin.cn/post/7142096568546492429
+
 interface Options {
   afterShowModal?(): void | Promise<void>;
 }
