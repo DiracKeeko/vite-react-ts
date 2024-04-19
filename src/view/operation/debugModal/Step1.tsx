@@ -1,6 +1,10 @@
 import React from 'react';
 
-const Step1 = () => {
+import { StepProps } from './constant';
+
+const Step1 = ({ setPrevDisabled, setNextDisabled }: StepProps = {}) => {
+  setPrevDisabled && setPrevDisabled(true);
+  setNextDisabled && setNextDisabled(false);
   return (
     <div>
       <h1>Step1</h1>
