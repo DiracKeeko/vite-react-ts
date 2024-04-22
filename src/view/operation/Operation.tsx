@@ -2,6 +2,7 @@ import React from 'react';
 import { createSearchParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { Tabs } from 'antd';
 
+import TabEditableProTable from './TabEditableProTable';
 import TabOperationChange from './TabOperationChange';
 import TabProduction from './TabProduction';
 
@@ -23,7 +24,8 @@ const tabItems: {
   {
     label: '当日UAT制品',
     key: 'uatLabel',
-    children: "UAT label table"
+    // children: "UAT label table"
+    children: <TabEditableProTable />
   }
 ];
 

@@ -68,12 +68,14 @@ const DebugModal: ForwardRefRenderFunction<ModalRef, ModalProps> = (props, ref) 
       onOk && (await onOk({ ...event }));
       setConfirmLoading(false);
       setVisible(false);
+      setCurrentStep(0);
     },
     [onOk]
   );
   const wrapOnCancel = useCallback(() => {
     onCancel && onCancel();
     setVisible(false);
+    setCurrentStep(0);
   }, [onCancel]);
 
   useImperativeHandle(ref, () => ({
