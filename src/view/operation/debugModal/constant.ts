@@ -15,4 +15,15 @@ type ApiInfoItem = {
   registered: boolean;
 };
 
-export type { ApiInfoItem, StepProps };
+type UserInfo = {
+  userId: string;
+  name: string;
+  mobile: string;
+  email: string;
+  position: string;
+  sex: string;
+  company: string;
+  workState: string;
+};
+
+export type { ApiInfoItem, StepProps, UserInfo };
