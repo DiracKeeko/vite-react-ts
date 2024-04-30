@@ -3,4 +3,16 @@ type StepProps = {
   setNextDisabled?: (val: boolean) => void;
 };
 
-export type { StepProps };
+type ApiInfoItem = {
+  apiId: string;
+  serviceLabel: string;
+  releaseCode: string;
+  serverUrl: string;
+  path: string;
+  type: string;
+  desc: string;
+  author: string;
+  registered: boolean;
+};
+
+export type { ApiInfoItem, StepProps };

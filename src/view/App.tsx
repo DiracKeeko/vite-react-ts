@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Routes from '@/route/Routes';
 import ErrorBoundary from '@/component/ErrorBoundary';
+import Routes from '@/route/Routes';
 
 const App: React.FC = () => {
   return (
