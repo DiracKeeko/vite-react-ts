@@ -1,0 +1,33 @@
+.switch {
+  .ant-select {
+    margin-left: -1px;
+    width: 60px;
+
+    .ant-select-selector {
+      padding: 0 15px;
+
+      .ant-select-selection-item,
+      .ant-select-selection-placeholder {
+        padding-inline-end: 0;
+        color: unset;
+      }
+    }
+  }
+
+  .select-active {
+    .ant-select-selector {
+      color: #1677ff;
+      border-color: #1677ff;
+      z-index: 10;
+    }
+  }
+
+  .ant-select:hover {
+    .ant-select-selector {
+      color: #4096ff;
+      border: 1px solid #4096ff !important;
+      box-shadow: unset !important;
+      z-index: 1;
+    }
+  }
+}
