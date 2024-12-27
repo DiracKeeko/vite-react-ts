@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { useDynamicSvgImport } from '@/hook/useDynamicSvgImport';
 
 interface IProps {

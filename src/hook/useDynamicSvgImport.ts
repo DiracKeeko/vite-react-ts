@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
 export function useDynamicSvgImport(iconName: string) {
-  const importedIconRef = useRef<React.FC<React.SVGProps<SVGElement>>>();
+  const importedIconRef = useRef<React.FC<React.SVGProps<SVGSVGElement>>>();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<unknown>();
 
@@ -12,9 +12,9 @@ export function useDynamicSvgImport(iconName: string) {
       // please make sure all your svg icons are placed in the same directory
       // if we want that part to be configurable then instead of iconName we will send iconPath as prop
       try {
-        importedIconRef.current = (
-          await import(`@/icon/${iconName}.svg`)
-        ).ReactComponent; // svgr provides ReactComponent for given svg path
+        // 新版本需要添加 "?react" 查询参数
+        const importedIcon = await import(`@/icon/${iconName}.svg?react`);
+        importedIconRef.current = importedIcon.default; // 直接使用默认导出
       } catch (err) {
         setError(err);
         console.error(err);
