@@ -118,6 +118,21 @@ const menuConfig: ConfigType[] = [
     element: lazy(() => import('@/view/visualPresentation/VisualPresentation'))
   },
   {
+    type: 'sub',
+    title: '图展示',
+    route: '/graph',
+    icon: <ApiOutlined />,
+    children: [
+      {
+        type: 'item',
+        title: '组织关系图',
+        route: '/graph/graph1',
+        icon: <ApiOutlined />,
+        element: lazy(() => import('@/view/graph/graph01/Graph01'))
+      }
+    ]
+  },
+  {
     type: 'item',
     title: '激活菜单展示',
     route: '/operation',
