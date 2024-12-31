@@ -1,89 +1,57 @@
-import React, { useEffect, useRef } from 'react';
-import G6 from '@antv/g6';
+import React, { useEffect } from 'react';
+import { ExtensionCategory, Graph, register } from '@antv/g6';
+import { NodeData } from '@antv/g6/lib/spec';
+import { GNode } from '@antv/g6-extension-react';
 
-// 定义组织图的节点数据类型
-interface TreeNode {
-  id: string;
-  label: string;
-  children?: TreeNode[];
+import Node, { DataItem } from './Node'; // 引入 Node 组件
+
+register(ExtensionCategory.NODE, 'g', GNode);
+
+interface OrganizationChartProps {
+  containerId: string; // G6 图表容器 ID
+  nodesData: NodeData[]; // 节点数据
+  edgesData: { source: string; target: string }[]; // 边数据
 }
 
-const OrganizationChart: React.FC = () => {
-  const containerRef = useRef<HTMLDivElement | null>(null);
+const OrganizationChart: React.FC<OrganizationChartProps> = ({
+  containerId,
+  nodesData,
+  edgesData
+}) => {
+  let graph: Graph | null = null;
 
   useEffect(() => {
-    // 初始化图表
-    if (containerRef.current) {
-      const graph = new G6.TreeGraph({
-        container: containerRef.current, // 挂载容器
-        width: containerRef.current.offsetWidth, // 宽度
-        height: containerRef.current.offsetHeight, // 高度
-        modes: {
-          default: ['drag-canvas', 'zoom-canvas']
-        },
-        defaultNode: {
-          size: [100, 40],
-          shape: 'rect',
-          style: {
-            fill: '#9EC9FF',
-            stroke: '#5B8FF9',
-            lineWidth: 2
-          }
-        },
-        defaultEdge: {
-          type: 'polyline',
-          style: {
-            stroke: '#A3B1BF'
-          }
-        },
-        layout: {
-          type: 'dendrogram', // 树形布局
-          direction: 'TB', // 从上到下的布局
-          dropCap: false, // 禁用起始节点
-          nodeSep: 20, // 节点间距
-          rankSep: 100 // 排列间距
+    const graphInstance: Graph = new Graph({
+      container: containerId, // 容器 ID
+      data: {
+        nodes: nodesData,
+        edges: edgesData
+      },
+      node: {
+        type: 'g', // 使用自定义节点类型
+        style: {
+          size: [180, 60], // 默认节点大小
+          component: (data: DataItem) => <Node data={data} size={[180, 60]} /> // 自定义节点组件
         }
-      });
+      },
+      behaviors: ['drag-element', 'zoom-canvas', 'drag-canvas'] // 启用交互
+    });
 
-      // 定义数据
-      const data: TreeNode = {
-        id: 'root',
-        label: 'Root',
-        children: [
-          {
-            id: 'node1',
-            label: 'Node 1',
-            children: [
-              { id: 'node1-1', label: 'Node 1-1' },
-              { id: 'node1-2', label: 'Node 1-2' }
-            ]
-          },
-          {
-            id: 'node2',
-            label: 'Node 2',
-            children: [
-              { id: 'node2-1', label: 'Node 2-1' },
-              { id: 'node2-2', label: 'Node 2-2' }
-            ]
-          }
-        ]
-      };
+    graph = graphInstance; // 保存图表实例
 
-      // 设置数据并渲染图表
-      graph.data(data);
-      graph.render();
-      graph.fitView();
-    }
+    graphInstance.render(); // 渲染图表
 
-    // 清理图表实例
     return () => {
-      if (containerRef.current) {
-        containerRef.current.innerHTML = '';
-      }
+      graph && graph.destroy(); // 清理图表实例
     };
-  }, []);
+  }, [containerId, nodesData, edgesData]); // 当容器或数据变化时重新渲染
 
-  return <div ref={containerRef} style={{ width: '100%', height: '500px' }}></div>;
+  return (
+    <div
+      id={containerId}
+      style={{ width: '90vw', height: '500px', border: '1px solid #cccccc' }}
+    ></div>
+  );
 };
 
 export default OrganizationChart;

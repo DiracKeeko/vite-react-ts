@@ -4,7 +4,7 @@ import { Group, Image, Rect, Text } from '@antv/g6-extension-react';
 import pngModule from '@/asset/node_module.png';
 import pngProcess from '@/asset/node_module.png';
 
-type DataItem = {
+export type DataItem = {
   id: string;
   data: {
     name: string;
