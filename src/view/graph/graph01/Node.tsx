@@ -1,19 +1,45 @@
 import React from 'react';
 import { Group, Image, Rect, Text } from '@antv/g6-extension-react';
 
+import pngModule from '@/asset/node_module.png';
+import pngProcess from '@/asset/node_module.png';
+
+type DataItem = {
+  id: string;
+  data: {
+    name: string;
+    type: string;
+    status: string;
+    success: number;
+    time: number;
+    failure: number;
+  };
+  style: {
+    x: number;
+    y: number;
+  };
+};
+
 interface NodeProps {
-  data: any;
+  data: DataItem;
   size: [number, number];
 }
+
+type TitleMap = {
+  [key: string]: string;
+  success: string;
+  time: string;
+  failure: string;
+};
 
 const Node: React.FC<NodeProps> = ({ data, size }) => {
   const [width, height] = size;
 
-  const { name, type, status, success, time, failure } = data.data;
+  const { name, status, type, success, time, failure } = data.data;
   const color = status === 'success' ? '#30BF78' : '#F4664A';
   const radius = 4;
 
-  const titleMap = {
+  const titleMap: TitleMap = {
     success: 'Success',
     time: 'Time',
     failure: 'Failure'
@@ -46,11 +72,7 @@ const Node: React.FC<NodeProps> = ({ data, size }) => {
       <Rect width={width} height={height} stroke={color} fill={'white'} radius={radius}>
         <Rect width={width} height={20} fill={color} radius={[radius, radius, 0, 0]}>
           <Image
-            src={
-              type === 'module'
-                ? 'https://gw.alipayobjects.com/mdn/rms_8fd2eb/afts/img/A*0HC-SawWYUoAAAAAAAAAAABkARQnAQ'
-                : 'https://gw.alipayobjects.com/mdn/rms_8fd2eb/afts/img/A*sxK0RJ1UhNkAAAAAAAAAAABkARQnAQ'
-            }
+            src={type === 'module' ? pngModule : pngProcess}
             x={2}
             y={2}
             width={16}
