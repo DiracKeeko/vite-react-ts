@@ -13,7 +13,8 @@
   },
   "dependencies": {
     "@ant-design/pro-components": "^2.6.42",
-    "@antv/g6": "^5.0.35",
+    "@antv/g6": "^5.0.39",
+    "@antv/g6-extension-react": "^0.1.14",
     "ahooks": "^3.7.10",
     "antd": "^4.24.15",
     "axios": "^0.27.2",
