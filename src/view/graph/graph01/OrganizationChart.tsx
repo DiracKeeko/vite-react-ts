@@ -1,11 +1,33 @@
 import React, { useEffect } from 'react';
-import { ExtensionCategory, Graph, register } from '@antv/g6';
+import { ExtensionCategory, Graph, HoverActivate, idOf, register } from '@antv/g6';
 import { NodeData } from '@antv/g6/lib/spec';
 import { GNode } from '@antv/g6-extension-react';
 
 import Node, { DataItem } from './Node'; // 引入 Node 组件
 
+// 定义 hoverElement 行为
+class HoverElement extends HoverActivate {
+  getActiveIds(event: any) {
+    const { model, graph } = this.context;
+    const { targetType, target } = event;
+    const targetId = target.id;
+
+    const ids = [targetId];
+    if (targetType === 'edge') {
+      const edge = model.getEdgeDatum(targetId);
+      ids.push(edge.source, edge.target);
+    } else if (targetType === 'node') {
+      ids.push(...model.getRelatedEdgesData(targetId).map(idOf));
+    }
+
+    graph.frontElement(ids);
+
+    return ids;
+  }
+}
+
 register(ExtensionCategory.NODE, 'g', GNode);
+register(ExtensionCategory.BEHAVIOR, 'hover-element', HoverElement);
 
 interface OrganizationChartProps {
   containerId: string; // G6 图表容器 ID
@@ -18,10 +40,8 @@ const OrganizationChart: React.FC<OrganizationChartProps> = ({
   nodesData,
   edgesData
 }) => {
-  let graph: Graph | null = null;
-
   useEffect(() => {
-    const graphInstance: Graph = new Graph({
+    const graphInstance: Graph | null = new Graph({
       container: containerId, // 容器 ID
       data: {
         nodes: nodesData,
@@ -34,15 +54,13 @@ const OrganizationChart: React.FC<OrganizationChartProps> = ({
           component: (data: DataItem) => <Node data={data} size={[180, 60]} /> // 自定义节点组件
         }
       },
-      behaviors: ['drag-element', 'zoom-canvas', 'drag-canvas'] // 启用交互
+      behaviors: ['drag-element', 'zoom-canvas', 'drag-canvas', 'hover-element'] // 启用交互
     });
-
-    graph = graphInstance; // 保存图表实例
 
     graphInstance.render(); // 渲染图表
 
     return () => {
-      graph && graph.destroy(); // 清理图表实例
+      graphInstance && graphInstance.destroy(); // 清理图表实例
     };
   }, [containerId, nodesData, edgesData]); // 当容器或数据变化时重新渲染
 
