@@ -54,6 +54,36 @@ const OrganizationChart: React.FC<OrganizationChartProps> = ({
           component: (data: DataItem) => <Node data={data} size={[180, 60]} /> // 自定义节点组件
         }
       },
+      edge: {
+        // type: 'polyline', // 'polyline' 线条为 两边垂直 + 圆形过渡
+        style: {
+          lineWidth: 2,
+          radius: 20,
+          stroke: '#8b9baf',
+          endArrow: true,
+          endArrowSize: 9,
+          labelFill: '#8b9baf',
+          labelFontWeight: 600,
+          labelBackground: true,
+          labelBackgroundFill: '#f8f8f8',
+          labelBackgroundOpacity: 1,
+          labelBackgroundLineWidth: 2,
+          labelBackgroundStroke: '#8b9baf',
+          labelPadding: [1, 10],
+          labelBackgroundRadius: 4,
+          router: {
+            type: 'orth'
+          }
+        },
+        state: {
+          // ↓ 激活状态配置
+          active: {
+            stroke: '#f6c523', // ACTIVE_COLOR,
+            labelBackgroundStroke: '#f6c523',
+            halo: false
+          }
+        }
+      },
       behaviors: ['drag-element', 'zoom-canvas', 'drag-canvas', 'hover-element'] // 启用交互
     });
 
