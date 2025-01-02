@@ -11,10 +11,15 @@ const nodesData = [
   {
     id: 'node-2',
     data: { name: 'Process', type: 'process', status: 'error', success: 11, time: 12, failure: 26 },
-    style: { x: 300, y: 100 }
+    style: { x: 500, y: 200 }
+  },
+  {
+    id: 'node-3',
+    data: { name: 'Process', type: 'process', status: 'success', success: 88, time: 11, failure: 5 },
+    style: { x: 900, y: 300 }
   }
 ];
-const edgesData = [{ source: 'node-1', target: 'node-2' }];
+const edgesData = [{ source: 'node-1', target: 'node-2' }, { source: 'node-2', target: 'node-3' }];
 
 const Graph01 = () => {
   return <OrganizationChart containerId="container" nodesData={nodesData} edgesData={edgesData} />;
