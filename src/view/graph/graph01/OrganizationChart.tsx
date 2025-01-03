@@ -55,7 +55,9 @@ const OrganizationChart: React.FC<OrganizationChartProps> = ({
         }
       },
       edge: {
-        // type: 'polyline', // 'polyline' 线条为 两边垂直 + 圆形过渡
+        // type: 'line', // 'line' 默认值
+        // type: 'polyline', // 'polyline' 折线，线条为 两边垂直 + 圆形过渡
+        // type: 'cubic' | 'cubic-vertical' // 赛贝尔曲线相关  https://g6.antv.vision/api/elements/edges/cubic
         style: {
           lineWidth: 2,
           radius: 20,
