@@ -6,21 +6,21 @@ const nodesData = [
   {
     id: '0',
     data: {
-      type: 'pre-inspection',
+      type: 'default',
       text: 'Check I/O wait (top)'
     }
   },
   {
     id: '1',
     data: {
-      type: 'pre-inspection',
+      type: 'preInspection',
       text: 'Check swap (free-m)'
     }
   },
   {
     id: '2',
     data: {
-      type: 'pre-inspection',
+      type: 'preInspection',
       text: 'Check % CPU (top)'
     }
   },

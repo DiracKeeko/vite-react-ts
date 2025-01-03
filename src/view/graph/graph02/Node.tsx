@@ -6,10 +6,11 @@ const { Text } = Typography;
 
 const ACTIVE_COLOR = '#f6c523';
 const COLOR_MAP: Record<string, string> = {
-  'pre-inspection': '#3fc1c9',
+  preInspection: '#3fc1c9',
   problem: '#8983f3',
   inspection: '#f48db4',
-  solution: '#ffaa64'
+  solution: '#ffaa64',
+  default: '#11bb55'
 };
 
 interface NodeProps {
@@ -36,7 +37,7 @@ const Node: React.FC<NodeProps> = ({ data }) => {
   }
 
   return (
-    <div className='d-flex jc-center ai-center' style={containerStyle}>
+    <div className="d-flex jc-center ai-center" style={containerStyle}>
       <div
         className="d-flex jc-center ai-center"
         style={{ padding: '8px 16px', textAlign: 'center' }}

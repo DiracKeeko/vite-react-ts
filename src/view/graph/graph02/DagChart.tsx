@@ -33,7 +33,7 @@ register(ExtensionCategory.BEHAVIOR, 'hover-element', HoverElement);
 
 type SizeMap = {
   [key: string]: [number, number];
-  'pre-inspection': [number, number];
+  preInspection: [number, number];
   problem: [number, number];
   inspection: [number, number];
   solution: [number, number];
@@ -60,7 +60,7 @@ const DagChart = ({ containerId, nodesData, edgesData }: DagChartProps) => {
         style: (d: NodeData): NodeStyle => {
           const curType: string = (d.data?.type as string) || 'default';
           const sizeMap: SizeMap = {
-            'pre-inspection': [240, 120],
+            preInspection: [240, 120],
             problem: [200, 120],
             inspection: [330, 100],
             solution: [200, 120],
