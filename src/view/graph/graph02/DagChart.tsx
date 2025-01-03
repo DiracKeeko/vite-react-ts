@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { ExtensionCategory, Graph, HoverActivate, idOf, register } from '@antv/g6';
 import { NodeData } from '@antv/g6/lib/spec';
+import { NodeStyle } from '@antv/g6/lib/spec/element/node';
 import { ReactNode } from '@antv/g6-extension-react';
 
 import Node from './Node';
@@ -32,7 +33,7 @@ register(ExtensionCategory.BEHAVIOR, 'hover-element', HoverElement);
 
 type SizeMap = {
   [key: string]: [number, number];
-  preInspection: [number, number];
+  'pre-inspection': [number, number];
   problem: [number, number];
   inspection: [number, number];
   solution: [number, number];
@@ -56,10 +57,10 @@ const DagChart = ({ containerId, nodesData, edgesData }: DagChartProps) => {
       autoFit: 'view',
       node: {
         type: 'react',
-        style: (d: NodeData) => {
+        style: (d: NodeData): NodeStyle => {
           const curType: string = (d.data?.type as string) || 'default';
           const sizeMap: SizeMap = {
-            preInspection: [240, 120],
+            'pre-inspection': [240, 120],
             problem: [200, 120],
             inspection: [330, 100],
             solution: [200, 120],
@@ -74,7 +75,7 @@ const DagChart = ({ containerId, nodesData, edgesData }: DagChartProps) => {
             dx: -size[0] / 2,
             dy: -size[1] / 2
           };
-          return style;
+          return style as NodeStyle;
         },
         state: {
           active: {
@@ -92,7 +93,7 @@ const DagChart = ({ containerId, nodesData, edgesData }: DagChartProps) => {
           radius: 20,
           stroke: '#8b9baf',
           endArrow: true,
-          labelText: (d) => d.data.text,
+          labelText: (d) => (d.data?.text) as string || '',
           labelFill: '#8b9baf',
           labelFontWeight: 600,
           labelBackground: true,
