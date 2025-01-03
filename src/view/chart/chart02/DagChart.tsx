@@ -64,7 +64,7 @@ const DagChart = ({ containerId, nodesData, edgesData }: DagChartProps) => {
             problem: [200, 120],
             inspection: [330, 100],
             solution: [200, 120],
-            default: [200, 80]
+            default: [220, 130]
           };
           const size = sizeMap[curType];
 

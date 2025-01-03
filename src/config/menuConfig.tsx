@@ -128,7 +128,14 @@ const menuConfig: ConfigType[] = [
         title: '组织关系图',
         route: '/graph/graph1',
         icon: <ApiOutlined />,
-        element: lazy(() => import('@/view/graph/graph01/Graph01'))
+        element: lazy(() => import('@/view/chart/chart01/Chart01'))
+      },
+      {
+        type: 'item',
+        title: 'Dag图',
+        route: '/graph/graph2',
+        icon: <ApiOutlined />,
+        element: lazy(() => import('@/view/chart/chart02/Chart02'))
       }
     ]
   },

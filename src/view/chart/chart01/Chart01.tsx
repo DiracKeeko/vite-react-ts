@@ -21,8 +21,8 @@ const nodesData = [
 ];
 const edgesData = [{ source: 'node-1', target: 'node-2' }, { source: 'node-2', target: 'node-3' }];
 
-const Graph01 = () => {
+const Chart01 = () => {
   return <OrganizationChart containerId="container" nodesData={nodesData} edgesData={edgesData} />;
 };
 
-export default Graph01;
+export default Chart01;
