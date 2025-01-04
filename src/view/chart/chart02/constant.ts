@@ -1,8 +1,12 @@
 type TypeEnum = 'preInspection' | 'problem' | 'inspection' | 'solution' | 'default';
 
-type ColorMap = Record<TypeEnum, string> & { [key: string]: string };
+type Reassign<T> = {
+  [K in keyof T]: T[K]
+}
 
-type SizeMap = Record<TypeEnum, [number, number]> & { [key: string]: [number, number] };
+type ColorMap = Reassign<Record<TypeEnum, string> & { [key: string]: string }>;
+
+type SizeMap = Reassign<Record<TypeEnum, [number, number]> & { [key: string]: [number, number] }>;
 
 const ACTIVE_COLOR = '#f6c523';
 
