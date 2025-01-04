@@ -2,16 +2,9 @@ import React from 'react';
 import { BugOutlined } from '@ant-design/icons';
 import { Typography } from 'antd';
 
-const { Text } = Typography;
+import { ACTIVE_COLOR, COLOR_MAP } from './constant';
 
-const ACTIVE_COLOR = '#f6c523';
-const COLOR_MAP: Record<string, string> = {
-  preInspection: '#3fc1c9',
-  problem: '#8983f3',
-  inspection: '#f48db4',
-  solution: '#ffaa64',
-  default: '#11bb55'
-};
+const { Text } = Typography;
 
 interface NodeProps {
   data: any;

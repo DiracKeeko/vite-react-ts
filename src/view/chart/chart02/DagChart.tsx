@@ -4,9 +4,8 @@ import { NodeData } from '@antv/g6/lib/spec';
 import { NodeStyle } from '@antv/g6/lib/spec/element/node';
 import { ReactNode } from '@antv/g6-extension-react';
 
+import { ACTIVE_COLOR, SIZE_MAP } from './constant';
 import Node from './Node';
-
-const ACTIVE_COLOR = '#f6c523';
 
 class HoverElement extends HoverActivate {
   getActiveIds(event: any) {
@@ -31,15 +30,6 @@ class HoverElement extends HoverActivate {
 register(ExtensionCategory.NODE, 'react', ReactNode);
 register(ExtensionCategory.BEHAVIOR, 'hover-element', HoverElement);
 
-type SizeMap = {
-  [key: string]: [number, number];
-  preInspection: [number, number];
-  problem: [number, number];
-  inspection: [number, number];
-  solution: [number, number];
-  default: [number, number];
-};
-
 interface DagChartProps {
   containerId: string; // G6 图表容器 ID
   nodesData: NodeData[]; // 节点数据
@@ -59,14 +49,7 @@ const DagChart = ({ containerId, nodesData, edgesData }: DagChartProps) => {
         type: 'react',
         style: (d: NodeData): NodeStyle => {
           const curType: string = (d.data?.type as string) || 'default';
-          const sizeMap: SizeMap = {
-            preInspection: [240, 120],
-            problem: [200, 120],
-            inspection: [330, 100],
-            solution: [200, 120],
-            default: [220, 130]
-          };
-          const size = sizeMap[curType];
+          const size = SIZE_MAP[curType];
 
           const style = {
             component: <Node data={d} />,
@@ -93,7 +76,7 @@ const DagChart = ({ containerId, nodesData, edgesData }: DagChartProps) => {
           radius: 20,
           stroke: '#8b9baf',
           endArrow: true,
-          labelText: (d) => (d.data?.text) as string || '',
+          labelText: (d) => (d.data?.text as string) || '',
           labelFill: '#8b9baf',
           labelFontWeight: 600,
           labelBackground: true,
