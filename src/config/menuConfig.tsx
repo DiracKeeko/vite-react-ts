@@ -120,20 +120,20 @@ const menuConfig: ConfigType[] = [
   {
     type: 'sub',
     title: '图展示',
-    route: '/graph',
+    route: '/chart',
     icon: <ApiOutlined />,
     children: [
       {
         type: 'item',
         title: '组织关系图',
-        route: '/graph/graph1',
+        route: '/chart/chart1',
         icon: <ApiOutlined />,
         element: lazy(() => import('@/view/chart/chart01/Chart01'))
       },
       {
         type: 'item',
         title: 'Dag图',
-        route: '/graph/graph2',
+        route: '/chart/chart2',
         icon: <ApiOutlined />,
         element: lazy(() => import('@/view/chart/chart02/Chart02'))
       }
