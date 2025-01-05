@@ -101,6 +101,20 @@ const DagChart = ({ containerId, nodesData, edgesData }: DagChartProps) => {
       layout: {
         type: 'antv-dagre'
       },
+      plugins: [
+        {
+          type: 'tooltip',
+          trigger: 'hover', // 默认值hover;  'hover' || 'click'
+          getContent: (e: any, items: any[]) => {
+            let result = `<h4>tooltip content</h4>`;
+            items.forEach((item) => {
+              result += `<span>Type: ${item.data.type}</span></br>`
+              result += `<span>Content: ${item.data.text}</span>`
+            });
+            return result;
+          }
+        }
+      ],
       behaviors: ['zoom-canvas', 'drag-canvas', 'hover-element', 'click-select']
     });
 
