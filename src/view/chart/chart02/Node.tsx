@@ -14,7 +14,8 @@ const Node: React.FC<NodeProps> = ({ data }) => {
   const { text, type } = data.data;
   const isHovered = data.states?.includes('active');
   const isSelected = data.states?.includes('selected');
-  const color = isHovered ? ACTIVE_COLOR : COLOR_MAP[type];
+  const curType: string = type || 'default';
+  const color = isHovered ? ACTIVE_COLOR : COLOR_MAP[curType];
 
   const containerStyle: React.CSSProperties = {
     width: '100%',
