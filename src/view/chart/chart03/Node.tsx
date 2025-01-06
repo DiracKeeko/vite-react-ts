@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { ACTIVE_COLOR, COLOR_MAP } from './constant';
-
+import { COLOR_MAP, TYPE_COLOR_MAP } from './constant';
 
 type OtherInfo = {
   traceId: string;
@@ -14,17 +13,6 @@ interface NodeProps {
   data: any;
   otherInfo: OtherInfo;
 }
-
-const colorMap = {
-  succ: '#99e98e',
-  warn: '#EC4234',
-  innerLink: '#B0ACA2', // 基础
-  outerTrace: '#6B705C', // 北斗链路
-  innerRoom: '#2d2686',
-  outerRoom: '#FFD700',
-  isProduction: '#1E90FF',
-  core: '#DD7D23'
-};
 
 function formatServiceUnit(serviceUnit: string): string {
   let res = serviceUnit;
@@ -61,8 +49,8 @@ const Node = ({ data, otherInfo }: NodeProps) => {
 
   const isHovered = data.states?.includes('active');
   const isSelected = data.states?.includes('selected');
-  const curType: string = type || 'default';
-  const color = isHovered ? ACTIVE_COLOR : COLOR_MAP[curType];
+  const curType: string = type || 'base';
+  const color = isHovered ? COLOR_MAP.active : TYPE_COLOR_MAP[curType];
 
   const containerStyle: React.CSSProperties = {
     width: '100%',
@@ -82,17 +70,17 @@ const Node = ({ data, otherInfo }: NodeProps) => {
   let roomText: JSX.Element = <></>;
 
   if (alarmTime || (traceRtnCode && traceRtnCode != 'SUC0000')) {
-    warnText = <span style={{ color: colorMap.warn }}>[告警]</span>;
+    warnText = <span style={{ color: COLOR_MAP.warn }}>[告警]</span>;
   }
 
   if (releaseLabel) {
-    productText = <span style={{ color: colorMap.isProduction }}>[投产]</span>;
+    productText = <span style={{ color: COLOR_MAP.isProduction }}>[投产]</span>;
   }
 
   if (otherInfo && otherInfo.room === ownRoom) {
-    roomText = <span style={{ color: colorMap.innerRoom }}>[室内]</span>;
+    roomText = <span style={{ color: COLOR_MAP.innerRoom }}>[室内]</span>;
   } else {
-    roomText = <span style={{ color: colorMap.outerRoom }}>[室外]</span>;
+    roomText = <span style={{ color: COLOR_MAP.outerRoom }}>[室外]</span>;
   }
 
   return (
