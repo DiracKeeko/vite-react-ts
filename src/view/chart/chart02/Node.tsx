@@ -1,10 +1,7 @@
 import React from 'react';
 import { BugOutlined } from '@ant-design/icons';
-import { Typography } from 'antd';
 
 import { ACTIVE_COLOR, COLOR_MAP } from './constant';
-
-const { Text } = Typography;
 
 interface NodeProps {
   data: any;
@@ -39,7 +36,7 @@ const Node: React.FC<NodeProps> = ({ data }) => {
         {type === 'problem' && (
           <BugOutlined style={{ color: '#fff', fontSize: 24, marginBottom: 8 }} />
         )}
-        <Text style={{ color: '#fff', fontWeight: 600, fontSize: 16 }}>{text}</Text>
+        <span style={{ color: '#fff', fontWeight: 600, fontSize: 16 }}>{text}</span>
       </div>
     </div>
   );
