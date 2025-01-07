@@ -29,6 +29,39 @@ const COLOR_MAP: { [key: string]: string } = {
   isSelected: '#f57384'
 };
 
+type CommonNodeDetail = {
+  deployType: string;
+  systemId: string;
+  systemName: string;
+  systemImportanceLevel: string;
+  subSystemId: string;
+  subSystemName: string;
+  subSystemImportanceLevel: string;
+  serviceUnit: string; // 一定有
+  serviceName: string;
+  serviceImportanceLevel: string;
+  ownRoom: string;
+  majorManager: string;
+  analysisImportance: string;
+  analysisScores: string;
+  alarmException: string;
+  alarmTime: string;
+  alarmCount: string;
+  traceId: string;
+  traceRtnCode: string;
+  traceErrorDesc: string;
+  traceApi: string;
+};
+
+type ServiceNodeDTO = {
+  id: string; // 一定有
+  detail: CommonNodeDetail & {
+    releaseLabel: string;
+    releaseTime: string;
+    releaseOperator: string;
+  };
+};
+
 type OtherInfo = {
   traceId: string;
   room: string;
@@ -36,4 +69,39 @@ type OtherInfo = {
   coreInterfaceCode: string;
 };
 
-export { COLOR_MAP, TYPE_COLOR_MAP, TYPE_SIZE_MAP };
+type Node = {
+  id: string;
+  data: CommonNodeDetail & {
+    releaseLabel: string;
+    releaseTime: string;
+    releaseOperator: string;
+  } & {
+    nodeType: TypeEnum;
+    isInnerRoom: boolean;
+  };
+};
+
+const createServiceNodeArr = (nodeArr: ServiceNodeDTO[], otherInfo: OtherInfo): Node[] => {
+  return nodeArr.map(({ id, detail }) => {
+    let nodeType: TypeEnum = 'base';
+    if (otherInfo.traceId === detail.traceId) {
+      nodeType = 'trace';
+    }
+    if (otherInfo.coreServiceUnit === detail.serviceUnit) {
+      nodeType = 'core';
+    }
+    const isInnerRoom = otherInfo.room === detail.ownRoom;
+    const res = {
+      id,
+      data: {
+        ...detail,
+        nodeType,
+        isInnerRoom
+      }
+    };
+    return res;
+  });
+};
+
+export type { Node, OtherInfo, ServiceNodeDTO };
+export { COLOR_MAP, createServiceNodeArr, TYPE_COLOR_MAP, TYPE_SIZE_MAP };

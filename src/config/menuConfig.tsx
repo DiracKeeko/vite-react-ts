@@ -136,6 +136,13 @@ const menuConfig: ConfigType[] = [
         route: '/chart/chart2',
         icon: <ApiOutlined />,
         element: lazy(() => import('@/view/chart/chart02/Chart02'))
+      },
+      {
+        type: 'item',
+        title: 'Dag图',
+        route: '/chart/chart3',
+        icon: <ApiOutlined />,
+        element: lazy(() => import('@/view/chart/chart03/Chart03'))
       }
     ]
   },

@@ -55,7 +55,7 @@ const Node = ({ data }: NodeProps) => {
   };
 
   if (isSelected) {
-    Object.assign(containerStyle, { border: `3px solid #f57384` });
+    Object.assign(containerStyle, { border: `3px solid ${COLOR_MAP.isSelected}` });
   }
 
   let warnText: JSX.Element = <></>;
