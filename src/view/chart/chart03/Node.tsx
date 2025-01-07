@@ -2,16 +2,8 @@ import React from 'react';
 
 import { COLOR_MAP, TYPE_COLOR_MAP } from './constant';
 
-type OtherInfo = {
-  traceId: string;
-  room: string;
-  coreServiceUnit: string;
-  coreInterfaceCode: string;
-};
-
 interface NodeProps {
   data: any;
-  otherInfo: OtherInfo;
 }
 
 function formatServiceUnit(serviceUnit: string): string {
@@ -25,7 +17,7 @@ function formatServiceUnit(serviceUnit: string): string {
   return res;
 }
 
-const Node = ({ data, otherInfo }: NodeProps) => {
+const Node = ({ data }: NodeProps) => {
   const {
     serviceName,
     serviceUnit,
@@ -44,12 +36,13 @@ const Node = ({ data, otherInfo }: NodeProps) => {
     traceApi,
     traceRtnCode,
     traceRtnCodetype,
-    type
-  } = data.detail;
+    isInnerRoom,
+    nodeType
+  } = data.data;
 
   const isHovered = data.states?.includes('active');
   const isSelected = data.states?.includes('selected');
-  const curType: string = type || 'base';
+  const curType: string = nodeType || 'base';
   const color = isHovered ? COLOR_MAP.active : TYPE_COLOR_MAP[curType];
 
   const containerStyle: React.CSSProperties = {
@@ -62,7 +55,7 @@ const Node = ({ data, otherInfo }: NodeProps) => {
   };
 
   if (isSelected) {
-    Object.assign(containerStyle, { border: `3px solid #000` });
+    Object.assign(containerStyle, { border: `3px solid #f57384` });
   }
 
   let warnText: JSX.Element = <></>;
@@ -77,7 +70,7 @@ const Node = ({ data, otherInfo }: NodeProps) => {
     productText = <span style={{ color: COLOR_MAP.isProduction }}>[投产]</span>;
   }
 
-  if (otherInfo && otherInfo.room === ownRoom) {
+  if (isInnerRoom) {
     roomText = <span style={{ color: COLOR_MAP.innerRoom }}>[室内]</span>;
   } else {
     roomText = <span style={{ color: COLOR_MAP.outerRoom }}>[室外]</span>;
