@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { createServiceNodeArr, Node, OtherInfo, ServiceNodeDTO } from './constant';
+import { createEdgeArr, createServiceNodeArr, Node, OtherInfo, ServiceNodeDTO } from './constant';
 import DagChart from './DagChart';
 
 const otherInfo: OtherInfo = {
@@ -53,7 +53,7 @@ const nodeDtoArr: ServiceNodeDTO[] = [
       serviceUnit: 'service_unit_002',
       serviceName: '服务单元002',
       serviceImportanceLevel: '2',
-      ownRoom: '技术开发一室(地区B)',
+      ownRoom: '开发一室(地区A)',
       majorManager: '王涛',
       analysisImportance: 'Medium',
       analysisScores: '85',
@@ -159,37 +159,29 @@ const nodeDtoArr: ServiceNodeDTO[] = [
 ];
 const nodesData: Node[] = createServiceNodeArr(nodeDtoArr, otherInfo);
 
-const edgesData = [
+const edgesDtoArr = [
   {
     id: '3b55c046-4dd5-4dd7-8c6b-0554e53e1d93',
     sourceId: 'fbc92b72-6eb4-42d1-b183-5e941cb59eb0',
     targetId: '1e12c880-76d6-407b-b5b7-825eedcfbbcd',
-    detail: null
   },
   {
     id: 'eb2ae38c-cccf-431c-ad12-8a7f815d4736',
     sourceId: '193bb6b6-f99c-48e8-aa40-3d026ffa433e',
     targetId: 'fbc92b72-6eb4-42d1-b183-5e941cb59eb0',
-    detail: null
   },
   {
     id: '05ed9aee-750a-46d3-b539-266af7cfafb3',
     sourceId: '3951a70a-d0d8-46d9-a4bf-77da5c083121',
     targetId: '193bb6b6-f99c-48e8-aa40-3d026ffa433e',
-    detail: null
   },
   {
     id: 'd90954d9-dcee-4587-9ea1-bb36de0e6453',
     sourceId: '65819c24-364a-4d3e-8404-dff7e6d19d63',
     targetId: '193bb6b6-f99c-48e8-aa40-3d026ffa433e',
-    detail: null
   }
-].map(({ sourceId, targetId }) => {
-  return {
-    source: sourceId,
-    target: targetId
-  };
-});
+];
+const edgesData = createEdgeArr(edgesDtoArr);
 
 const Chart03 = () => {
   return <DagChart containerId="container" nodesData={nodesData} edgesData={edgesData} />;

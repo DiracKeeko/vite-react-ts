@@ -26,7 +26,8 @@ const COLOR_MAP: { [key: string]: string } = {
   innerRoom: '#2d2686',
   outerRoom: '#FFD700',
   isProduction: '#1E90FF',
-  isSelected: '#f57384'
+  isSelected: '#f57384',
+  edge: '#8b9baf'
 };
 
 type CommonNodeDetail = {
@@ -62,6 +63,13 @@ type ServiceNodeDTO = {
   };
 };
 
+type EdgeDTO = {
+  id: string;
+  sourceId: string;
+  targetId: string;
+  detail?: Record<string, string>;
+};
+
 type OtherInfo = {
   traceId: string;
   room: string;
@@ -79,6 +87,11 @@ type Node = {
     nodeType: TypeEnum;
     isInnerRoom: boolean;
   };
+};
+
+type Edge = {
+  source: string;
+  target: string;
 };
 
 const createServiceNodeArr = (nodeArr: ServiceNodeDTO[], otherInfo: OtherInfo): Node[] => {
@@ -103,5 +116,14 @@ const createServiceNodeArr = (nodeArr: ServiceNodeDTO[], otherInfo: OtherInfo): 
   });
 };
 
-export type { Node, OtherInfo, ServiceNodeDTO };
-export { COLOR_MAP, createServiceNodeArr, TYPE_COLOR_MAP, TYPE_SIZE_MAP };
+const createEdgeArr = (edgeArr: EdgeDTO[]): Edge[] => {
+  return edgeArr.map(({ sourceId, targetId }) => {
+    return {
+      source: sourceId,
+      target: targetId
+    };
+  });
+};
+
+export type { Edge, Node, OtherInfo, ServiceNodeDTO };
+export { COLOR_MAP, createEdgeArr, createServiceNodeArr, TYPE_COLOR_MAP, TYPE_SIZE_MAP };
