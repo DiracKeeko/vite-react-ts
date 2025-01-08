@@ -99,7 +99,9 @@ const DagChart = ({ containerId, nodesData, edgesData }: DagChartProps) => {
         }
       },
       layout: {
-        type: 'antv-dagre'
+        type: 'antv-dagre' // 'antv-drage' 支持跨层级连接 (A->B->C 同时A->C), 在复杂的节点关系中，跨层级连接可能会导致整图报错，表现为无法渲染，控制台输出targetId找不到
+        // 'antv-dagre' 不支持tree布局的节点折叠。
+        // type: 'antv-dagre' | 'dagre'
       },
       plugins: [
         {

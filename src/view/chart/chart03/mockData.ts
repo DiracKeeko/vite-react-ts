@@ -1,6 +1,6 @@
 import { OtherInfo, ServiceNodeDTO } from './constant';
 
-const res = {
+let res = {
   nodes: [
     {
       id: '193bb6b6-f99c-48e8-aa40-3d026ffa433e',
@@ -168,9 +168,16 @@ const res = {
       id: 'd90954d9-dcee-4587-9ea1-bb36de0e6453',
       sourceId: '65819c24-364a-4d3e-8404-dff7e6d19d63',
       targetId: '193bb6b6-f99c-48e8-aa40-3d026ffa433e'
-    }
+    },
+    // 跨层级连接
+    // {
+    //   id: 'test-003->002',
+    //   sourceId: '65819c24-364a-4d3e-8404-dff7e6d19d63',
+    //   targetId: 'fbc92b72-6eb4-42d1-b183-5e941cb59eb0'
+    // }
   ]
 };
+
 
 const otherInfo: OtherInfo = {
   traceId: '',
