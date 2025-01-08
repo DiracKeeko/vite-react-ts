@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { createEdgeArr, createServiceNodeArr, Edge, Node } from './constant';
-import { edgeDtoArr, nodeDtoArr, otherInfo } from './mockData';
 import DagChart from './DagChart';
+import { edgeDtoArr, nodeDtoArr, otherInfo } from './mockData';
 
 const nodesData: Node[] = createServiceNodeArr(nodeDtoArr, otherInfo);
 

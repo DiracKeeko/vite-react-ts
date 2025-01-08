@@ -113,7 +113,11 @@ const DagChart = ({ containerId, nodesData, edgesData }: DagChartProps) => {
             });
             return result;
           }
-        }
+        },
+        {
+          type: 'minimap',
+          size: [240, 160],
+        },
       ],
       behaviors: ['zoom-canvas', 'drag-canvas', 'hover-element', 'click-select']
     });
