@@ -147,7 +147,7 @@ const DagChart = ({ containerId, nodesData, edgesData }: DagChartProps) => {
               if (releaseTime) {
                 res += `
                   <span>变更时间: ${releaseTime}</span><br>
-                  <span>制品: ${releaseLabel}</span><br>
+                  <span style="word-wrap: break-word;">制品: ${releaseLabel}</span><br>
                   <span>操作人: ${releaseOperator}</span><br>
                 `;
               }
