@@ -86,6 +86,9 @@ type Node = {
   } & {
     nodeType: TypeEnum;
     isInnerRoom: boolean;
+    functionCode?: string;
+    interfacePath?: string;
+    interfaceDesc?: string;
   };
 };
 

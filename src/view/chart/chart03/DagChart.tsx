@@ -4,8 +4,8 @@ import { NodeData } from '@antv/g6/lib/spec';
 import { NodeStyle } from '@antv/g6/lib/spec/element/node';
 import { ReactNode } from '@antv/g6-extension-react';
 
-import { COLOR_MAP, Edge, TYPE_SIZE_MAP } from './constant';
-import Node from './Node';
+import { COLOR_MAP, Edge, Node, TYPE_SIZE_MAP } from './constant';
+import G6Node from './Node';
 
 class HoverElement extends HoverActivate {
   getActiveIds(event: any) {
@@ -52,7 +52,7 @@ const DagChart = ({ containerId, nodesData, edgesData }: DagChartProps) => {
           const size = TYPE_SIZE_MAP[curType];
 
           const style = {
-            component: <Node data={d} />,
+            component: <G6Node data={d} />,
             ports: [{ placement: 'top' }, { placement: 'bottom' }],
             size,
             dx: -size[0] / 2,
@@ -108,18 +108,73 @@ const DagChart = ({ containerId, nodesData, edgesData }: DagChartProps) => {
           type: 'tooltip',
           trigger: 'hover', // 默认值hover;  'hover' || 'click'
           getContent: (e: any, items: any[]) => {
-            let result = `<h4>tooltip content</h4>`;
+            let res = '';
             items.forEach((item) => {
-              result += `<span>Type: ${item.data.nodeType}</span></br>`;
-              result += `<span>Content: ${item.data.text}</span>`;
+              const node = item as Node;
+              const {
+                serviceName,
+                serviceUnit,
+                majorManager,
+                alarmTime,
+                releaseTime,
+                releaseLabel,
+                releaseOperator,
+                functionCode,
+                interfacePath,
+                interfaceDesc,
+                traceId,
+                traceErrorDesc,
+                traceApi,
+                traceRtnCode
+              } = node.data;
+              const warnColor = COLOR_MAP.warn;
+              res += `
+                <p style="font-size:12px; color:'#333'; font-weight: bold;">
+                  ${serviceUnit} <br>
+                  (${serviceName})
+                </p>
+              `;
+              res += `
+                <span>负责人: </span>
+                <span>${majorManager}</span><br>
+              `;
+              if (alarmTime) {
+                res += `
+                  <span>云哨告警时间: </span>
+                  <span style="color:${warnColor};">${alarmTime}</span><br>
+                `;
+              }
+              if (releaseTime) {
+                res += `
+                  <span>变更时间: ${releaseTime}</span><br>
+                  <span>制品: ${releaseLabel}</span><br>
+                  <span>操作人: ${releaseOperator}</span><br>
+                `;
+              }
+              if (functionCode) {
+                res += `
+                  <span>接口编码: ${functionCode}</span><br>
+                  <span>接口路径: ${interfacePath}</span><br>
+                  <span>接口描述: ${interfaceDesc}</span><br>
+                `;
+              }
+              if (traceId && traceRtnCode !== 'SUC0000') {
+                res += `
+                  <span>北斗告警信息: ${traceErrorDesc}</span><br>
+                `;
+              }
+              res += `
+                <span>北斗接口信息: ${traceApi}</span><br>
+                <span>北斗返回码: ${traceRtnCode}</span><br>
+              `;
             });
-            return result;
+            return res;
           }
         },
         {
           type: 'minimap',
-          size: [240, 160],
-        },
+          size: [240, 160]
+        }
       ],
       behaviors: ['zoom-canvas', 'drag-canvas', 'hover-element', 'click-select']
     });
