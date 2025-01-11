@@ -8,8 +8,12 @@ const nodesData: Node[] = createServiceNodeArr(nodeDtoArr, otherInfo);
 
 const edgesData: Edge[] = createEdgeArr(edgeDtoArr);
 
+const clickNode = (serviceUnit: string) => {
+  console.log("serviceUnit->", serviceUnit);
+}
+
 const Chart03 = () => {
-  return <DagChart containerId="container" nodesData={nodesData} edgesData={edgesData} />;
+  return <DagChart containerId="container" nodesData={nodesData} edgesData={edgesData} clickEvent={clickNode} />;
 };
 
 export default Chart03;

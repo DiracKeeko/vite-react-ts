@@ -4,6 +4,7 @@ import { COLOR_MAP, TYPE_COLOR_MAP } from './constant';
 
 interface NodeProps {
   data: any;
+  clickEvent?: (id: string) => void;
 }
 
 function formatServiceUnit(serviceUnit: string): string {
@@ -17,7 +18,7 @@ function formatServiceUnit(serviceUnit: string): string {
   return res;
 }
 
-const Node = ({ data }: NodeProps) => {
+const Node = ({ data, clickEvent }: NodeProps) => {
   const {
     serviceName,
     serviceUnit,
@@ -77,7 +78,12 @@ const Node = ({ data }: NodeProps) => {
   }
 
   return (
-    <div style={containerStyle}>
+    <div
+      style={containerStyle}
+      onClick={() => {
+        clickEvent && clickEvent(serviceUnit);
+      }}
+    >
       <div
         style={{
           backgroundColor: color,
@@ -92,13 +98,13 @@ const Node = ({ data }: NodeProps) => {
           {formatServiceUnit(serviceUnit)}
         </span>
       </div>
-      <div
-        style={{ width: '100%', padding: '10px 5px 0px', textAlign: 'center' }}
-      >
+      <div style={{ width: '100%', padding: '10px 5px 0px', textAlign: 'center' }}>
         <div style={{ fontSize: 18 }}>
           {warnText} {productText} {roomText}
         </div>
-        <span style={{ color: '#666', fontWeight: 600, fontSize: 16, margin: '8px 0 0 0' }}>负责人:&nbsp;{majorManager}</span>
+        <span style={{ color: '#666', fontWeight: 600, fontSize: 16, margin: '8px 0 0 0' }}>
+          负责人:&nbsp;{majorManager}
+        </span>
       </div>
     </div>
   );

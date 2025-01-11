@@ -34,9 +34,10 @@ interface DagChartProps {
   containerId: string; // G6 图表容器 ID
   nodesData: NodeData[]; // 节点数据
   edgesData: Edge[]; // 边数据
+  clickEvent?: (id: string) => void;
 }
 
-const DagChart = ({ containerId, nodesData, edgesData }: DagChartProps) => {
+const DagChart = ({ containerId, nodesData, edgesData, clickEvent }: DagChartProps) => {
   useEffect(() => {
     const graphInstance: Graph | null = new Graph({
       container: containerId,
@@ -52,7 +53,7 @@ const DagChart = ({ containerId, nodesData, edgesData }: DagChartProps) => {
           const size = TYPE_SIZE_MAP[curType];
 
           const style = {
-            component: <G6Node data={d} />,
+            component: <G6Node data={d} clickEvent={clickEvent} />,
             ports: [{ placement: 'top' }, { placement: 'bottom' }],
             size,
             dx: -size[0] / 2,
