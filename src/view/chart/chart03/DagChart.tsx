@@ -45,7 +45,9 @@ const DagChart = ({ containerId, nodesData, edgesData, clickEvent }: DagChartPro
         nodes: nodesData,
         edges: edgesData
       },
-      autoFit: 'view',
+      autoFit: nodesData.length > 2 ? 'view' : 'center', 
+      // autoFit: 'view' | 'center'  自适应模式 (每次执行 render 时，都会根据 autoFit 进行自适应)
+      // 这里通过节点个数来判断， 节点个数大于2，'view'，铺满整个画布; 节点个数小于等于2，使用'center'布局，居中
       node: {
         type: 'react',
         style: (d: NodeData): NodeStyle => {
