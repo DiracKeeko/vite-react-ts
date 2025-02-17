@@ -5,7 +5,7 @@ import { NodeStyle } from '@antv/g6/lib/spec/element/node';
 import { ReactNode } from '@antv/g6-extension-react';
 
 import { COLOR_MAP, Edge, Node, TYPE_SIZE_MAP } from './constant';
-import G6Node from './Node';
+import G6Node from './NodeCanvas';
 
 class HoverElement extends HoverActivate {
   getActiveIds(event: any) {
@@ -178,6 +178,15 @@ const DagChart = ({ containerId, nodesData, edgesData, clickEvent }: DagChartPro
           type: 'minimap',
           size: [240, 160]
         }
+        /* 
+        // 预期在节点数量大于12时放置minimap，配置生效。
+        // g6 组件(2025年2月17日10:41:25 @antv/g6最新版本5.0.43) 依然存在问题
+        // 问题: 只要minimap开启了一次，即使plugins中关闭了minimap插件，依然会存在一个透明有黑边的div元素 (.g6-minimap)
+        nodesData.length > 12 && {
+          type: 'minimap',
+          size: [240, 160]
+        }
+         */
       ],
       behaviors: ['zoom-canvas', 'drag-canvas', 'hover-element', 'click-select']
     });
