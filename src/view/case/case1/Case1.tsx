@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { dictInfoArr, dictInfoKeyToNameMap } from './constant';
+import React, { useEffect, useState } from 'react';
 
+import { dictInfoArr, dictInfoKeyToNameMap } from './constant';
 import { ContentInfo } from './constant';
 
 const Case1 = () => {

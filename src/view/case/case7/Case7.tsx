@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Row, Col } from 'antd';
+import { Col, Row } from 'antd';
 
-import ButtonSwitch from '@/component/buttonSwitch/ButtonSwitch';
 import BorderSwitch from '@/component/borderSwitch/BorderSwitch';
+import ButtonSwitch from '@/component/buttonSwitch/ButtonSwitch';
 import QuarterSelect from '@/component/quarterSelect/QuarterSelect';
 
 // Switch
